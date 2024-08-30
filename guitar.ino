@@ -13,6 +13,9 @@ String tokens[MAX_TOKENS];
 // Message token count
 int tokenCount = 0;
 
+// The most important part of the program. IF YOU DELETE THIS, THE PROGRAM WILL EXPLODE.
+String quotes[] = { "I turned myself into a guitar, Morty.", "Boom, big reveal, I'm a guitar.", "What do you think about that?", "I turned myslef into a guitar!", "I'm a guitar!!!" };
+
 // Message types
 enum MessageType {
   UNKOWN_MSG,
@@ -21,7 +24,8 @@ enum MessageType {
 // Commands
 enum Command {
   UNKOWN_CMD,
-  SYSTEMINFO
+  SYSTEMINFO,
+  HELLO
 };
 
 void setup() {
@@ -67,6 +71,14 @@ void handleCommand(String cmd) {
     // System info
     case SYSTEMINFO:
       Serial2.println(String("Model: ") + ESP.getChipModel() + ", Revision: " + String(ESP.getChipRevision()) + ", Cores: " + String(ESP.getChipCores()) + ", Frequency: " + String(ESP.getCpuFreqMHz()) + " MHz");
+      break;
+
+    // Hello
+    case HELLO:
+      for (int i = 0; i < sizeof(quotes) / sizeof(quotes[0]); i++) {
+        Serial2.println(quotes[i]);
+        delay(1000);
+      }
       break;
 
     // Unknown command
@@ -117,6 +129,9 @@ MessageType parseMessageType(String msg) {
 Command parseCommand(String cmd) {
   if (cmd == "SYSTEMINFO") {
     return SYSTEMINFO;
+  }
+  if (cmd == "HELLO") {
+    return HELLO;
   }
   return UNKOWN_CMD;
 }
