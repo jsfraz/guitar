@@ -7,6 +7,7 @@ TODO image
 ## How it works
 
 TODO How it works
+TODO G.U.I.T.A.R App link
 
 ## ESP32-DevKitC Pinout
 
