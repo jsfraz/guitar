@@ -25,6 +25,8 @@ TODO How it works
 - [ESP32-DevKitC V4 User Guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html)
 - [ESP32 DevKitc V4 ready](https://forum.fritzing.org/t/esp32-devkitc-v4-ready/17213/6)
 - [RS232-to-TTL-Converter](https://github.com/foorschtbar/Fritzing-Parts)
+- [Power supply 12V](https://forum.fritzing.org/t/power-supply-12v/23193)
+- [LM2596 step down module](https://forum.fritzing.org/t/lm2596-step-down-module/6380)
 
 ## Used software
 
