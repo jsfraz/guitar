@@ -14,7 +14,7 @@ TODO How it works
 
 ## ESP32-DevKitC Pinout
 
-![Sketch](pinout.png "Pinout")
+![Pinout](pinout.png "Pinout")
 
 - [ESP32-DevKitC V4 User Guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html)
 

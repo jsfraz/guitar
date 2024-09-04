@@ -1,9 +1,5 @@
 #include "esp_system.h"
 
-// Serial2 pins
-#define RXD2 16
-#define TXD2 17
-
 // Min tokens in message
 const int MIN_TOKENS = 2;
 // Max tokens in message
@@ -29,23 +25,23 @@ enum Command {
 };
 
 void setup() {
-  // Setup Serial2 on GPIO pins
-  Serial2.begin(115200, SERIAL_8N1, RXD2, TXD2);
+  // Setup Serial
+  Serial.begin(115200);
 }
 
 void loop() {
   // Check if there is data coming
-  if (!Serial2.available()) {
+  if (!Serial.available()) {
     return;
   }
 
   // Read string until newline character
-  String str = Serial2.readStringUntil('\n');
+  String str = Serial.readStringUntil('\n');
   // Split string
   tokenCount = splitString(str, ';', tokens, MAX_TOKENS);
   // Check minimum token count
   if (tokenCount < MIN_TOKENS) {
-    Serial2.println("Invalid token count");
+    Serial.println("Invalid token count");
     return;
   }
 
@@ -59,7 +55,7 @@ void loop() {
 
     // Unknown message type
     default:
-      Serial2.println("Unknown message type '" + tokens[0] + "'");
+      Serial.println("Unknown message type '" + tokens[0] + "'");
       break;
   }
 }
@@ -70,20 +66,20 @@ void handleCommand(String cmd) {
 
     // System info
     case SYSTEMINFO:
-      Serial2.println(String("Model: ") + ESP.getChipModel() + ", Revision: " + String(ESP.getChipRevision()) + ", Cores: " + String(ESP.getChipCores()) + ", Frequency: " + String(ESP.getCpuFreqMHz()) + " MHz");
+      Serial.println(String("Model: ") + ESP.getChipModel() + ", Revision: " + String(ESP.getChipRevision()) + ", Cores: " + String(ESP.getChipCores()) + ", Frequency: " + String(ESP.getCpuFreqMHz()) + " MHz");
       break;
 
     // Hello
     case HELLO:
       for (int i = 0; i < sizeof(quotes) / sizeof(quotes[0]); i++) {
-        Serial2.println(quotes[i]);
+        Serial.println(quotes[i]);
         delay(1000);
       }
       break;
 
     // Unknown command
     default:
-      Serial2.println("Unknown command '" + cmd + "'");
+      Serial.println("Unknown command '" + cmd + "'");
       break;
   }
 }
